@@ -21,6 +21,11 @@ class Tests(unittest.TestCase):
             [1, 2, None, 3],
         )
 
+    def test_linked_list(self):
+        self.assertEqual(
+            leetcode.linked_list_to_list(leetcode.list_to_linked_list([1, 2, 3, 4, 5])),
+            [1, 2, 3, 4, 5],
+        )
 
 
 unittest.main()

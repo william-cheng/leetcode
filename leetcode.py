@@ -60,3 +60,29 @@ def list_to_btree(data):
             n.right = right
             q.append(right)
     return root
+
+
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+
+def list_to_linked_list(data):
+    if not data:
+        return None
+    head = ListNode(data[0])
+    n = head
+    for x in data[1:]:
+        n.next = ListNode(x)
+        n = n.next
+    return head
+
+
+def linked_list_to_list(head):
+    n = head
+    r = []
+    while n:
+        r.append(n.val)
+        n = n.next
+    return r
