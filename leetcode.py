@@ -47,8 +47,12 @@ def list_to_btree(data):
         n = q.pop(0)
         left = BTreeNode(data[i]) if data[i] else None
         i += 1
-        right = BTreeNode(data[i]) if data[i] else None
-        i += 1
+
+        if i < len(data):
+            right = BTreeNode(data[i]) if data[i] else None
+            i += 1
+        else:
+            right = None
         if left:
             n.left = left
             q.append(left)
