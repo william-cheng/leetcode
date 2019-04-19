@@ -33,10 +33,11 @@ class Solution(object):
 
         # init a list, the length of the list is `amount + 1`, init all of its elements value to -1
         # count_cache[i] represents make amount of i money should use number of count_cache[i] coins at least
-        count_cache = [-1 for _ in range(amount + 1)]
+        #count_cache = [-1 for _ in range(amount + 1)]
 
         # [KEY POINT] make amount of 0 money should use zero coin at least
-        count_cache[0] = 0
+        #count_cache[0] = 0
+        count_cache = [0] + [-1] * amount
         # store the min_coin value, prepare it for the using in future
         min_coin = min(coins)
         # here starts calculate that make every amount i of money(i from 1 to amount + 1) should use how many coins at least?
@@ -46,8 +47,8 @@ class Solution(object):
                 count_cache[i] = -1
                 continue
 
-            # init min_count to inf
-            min_count = float("inf")
+            # init min_count to the impossible count
+            min_count = amount + 1
             # [KEY POINT] traverse the coins list, in which every element is less than i
             for c in [coin for coin in coins if coin <= i]:
                 # if there is no solution to make amount of i-c money, continue
@@ -59,7 +60,7 @@ class Solution(object):
                 if cur_count < min_count:
                     min_count = cur_count
             # [KEY POINT] at last, if min_count is still inf, update it to -1
-            if min_count == float("inf"):
+            if min_count == amount + 1:
                 min_count = -1
             # store the min_count
             count_cache[i] = min_count
